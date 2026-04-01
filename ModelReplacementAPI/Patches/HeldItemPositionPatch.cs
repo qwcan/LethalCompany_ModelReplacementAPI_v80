@@ -13,6 +13,7 @@ namespace ModelReplacement.Patches
         public static void LateUpdatePatch(ref GrabbableObject __instance)
         {
             if (__instance.parentObject == null || __instance.playerHeldBy == null) return;
+            if (__instance.playerHeldBy.currentItemSlot > __instance.playerHeldBy.ItemSlots.Length - 1) return; //tool slot
             if (__instance.playerHeldBy.ItemSlots[__instance.playerHeldBy.currentItemSlot] != __instance) return;
 
             BodyReplacementBase bodyReplacement = __instance.playerHeldBy.gameObject.GetComponent<BodyReplacementBase>();
