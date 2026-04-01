@@ -525,7 +525,10 @@ namespace ModelReplacement
         public void UpdateItemTransform()
         {
             if (!heldItem) return;
-            if (heldItem.parentObject == null || heldItem.playerHeldBy != controller || controller.ItemSlots[controller.currentItemSlot] != heldItem)
+            if (heldItem.parentObject == null 
+                || heldItem.playerHeldBy != controller 
+                || controller.currentItemSlot > controller.ItemSlots.Length - 1
+                || controller.ItemSlots[controller.currentItemSlot] != heldItem)
             {
                 heldItem = null;
                 return;
